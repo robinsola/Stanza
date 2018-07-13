@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator, Image, } from 'react-native';
-import PoemList.js from './PoemList';
+import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator } from 'react-native';
+import PoemList from './PoemList';
 
 //function to call api from house listing tutorial:
 function urlForQueryAndPage(key, value, pageNumber) {
@@ -27,7 +27,7 @@ export default class PoemSearch extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'author name',
+      searchString: 'london',
       isLoading: false,
       errorMessage: '',
     };
@@ -37,13 +37,9 @@ export default class PoemSearch extends Component<{}> {
     this.setState({ searchString: event.nativeEvent.text });
   };
 
-  _onSearchPressed = () => {
-    const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
-    this._executeQuery(query);
-  };
-
-//FETCH function - API call for React Native
+  //FETCH function - API call for React Native
   _executeQuery = (query) => {
+    console.log(query);
     this.setState({ isLoading: true });
     fetch(query)
       .then(response => response.json())
@@ -52,16 +48,26 @@ export default class PoemSearch extends Component<{}> {
         this.setState({
           isLoading: false,
           errorMessage: 'Yikes! Something is not working ' + error
-        }));
+      }));
   };
 
+  //PARSE DATA FROM API CALL - NAVIGATES TO POEM LIST
   _handleResponse = (response) => {
     this.setState({ isLoading: false , errorMessage: '' });
     if (response.application_response_code.substr(0, 1) === '1') {
-      console.log('search results: ' + response.listings.length);
+      this.props.navigator.push({
+        title: 'Results',
+        component: PoemList,
+        passProps: {listings: response.listings}
+      });
     } else {
       this.setState({ errorMessage: 'Nothing found. Please try again.' });
     }
+  };
+
+  _onSearchPressed = () => {
+    const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
+    this._executeQuery(query);
   };
 
   render() {
