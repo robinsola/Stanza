@@ -60,6 +60,8 @@ App, LogoSplash, NavBar, PoemSearch, PoemList, Poem, FavPoemList, FavePoem
 5. Inverse data flow: Poem in PoemList will be filtered by click event to move Poem to new FavPoemList
 
 *Below is a rough sketch of the component tree with a stateful router*
+
+
 ![component tree with state](./component_tree.jpg)
 
 ### Installation
