@@ -8,7 +8,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {StyleSheet, NavigatorIOS} from 'react-native';
-import PoemSearch from './src/components/PoemSearch';
+import PoemSearch from './PoemSearch';
 
 type Props = {};
 
