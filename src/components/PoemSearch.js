@@ -20,14 +20,15 @@ function urlForQueryAndPage(key, value, pageNumber) {
 
   return 'https://api.nestoria.co.uk/api?' + querystring;
 }
+//end of API call functions
 
 export default class PoemSearch extends Component<{}> {
-
   constructor(props) {
     super(props);
     this.state = {
       searchString: 'author name',
       isLoading: false,
+      message: '',
     };
   }
 
@@ -35,14 +36,22 @@ export default class PoemSearch extends Component<{}> {
     this.setState({ searchString: event.nativeEvent.text });
   };
 
-  _executeQuery = (query) => {
-    console.log(query);
-    this.setState({ isLoading: true });
-  };
-
   _onSearchPressed = () => {
     const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
     this._executeQuery(query);
+  };
+
+//FETCH function - API call for React Native
+  _executeQuery = (query) => {
+    this.setState({ isLoading: true });
+    fetch(query)
+      .then(response => response.json())
+      .then(json => this._handleResponse(json.response))
+      .catch(error =>
+        this.setState({
+          isLoading: false,
+          message: 'Yikes! Something is not working ' + error
+        }));
   };
 
   render() {
@@ -60,6 +69,7 @@ export default class PoemSearch extends Component<{}> {
           <Button onPress={this._onSearchPressed} color='#F5A623' title='Find Poems'/>
         </View>
         {loader}
+        <Text style={styles.text}>{this.state.message}</Text>
       </View>
     );
   }
