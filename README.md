@@ -66,8 +66,10 @@ App, LogoSplash, NavBar, PoemSearch, PoemList, Poem, FavPoemList, FavePoem
 
 ### Installation
 * Clone project folder in terminal: `$ git clone` repository url
+* In terminal, run `$ cd Stanza` to get inside project directory
 * In terminal, run `$ npm install` in project folder home directory
-* In terminal, run `$ npm serve -open` to view in browser
+* Install Xcode
+* In terminal, run `$ react-native run-ios` in project folder home directory
 
 ### Known Bugs
 Project in Progress
