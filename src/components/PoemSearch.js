@@ -3,13 +3,29 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator, Image, } from 'react-native';
 
 export default class PoemSearch extends Component<{}> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchString: 'author name'
+    };
+  }
+
+  _onSearchInput = (event) => {
+    this.setState({ searchString: event.nativeEvent.text });
+  };
+
   render() {
     return (
       <View style={styles.body}>
         <Text style={styles.text}>Pick the Occasion:</Text>
         <Text style={styles.text}>(Radio Button Search Form Here)</Text>
         <View style={styles.formStyle}>
-          <TextInput style={styles.searchInput} placeholder='Search by Author'/>
+          <TextInput
+            value={this.state.searchString}
+            style={styles.searchInput}
+            placeholder='Search by Author'
+            onChange={this._onSearchInput}/>
           <Button onPress={() => {}} color='#F5A623' title='Find Poems'/>
         </View>
       </View>
