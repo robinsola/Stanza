@@ -7,7 +7,7 @@
  */
 'use strict';
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, NavigatorIOS} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
