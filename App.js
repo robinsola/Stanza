@@ -7,15 +7,10 @@
  */
 'use strict';
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, NavigatorIOS} from 'react-native';
+import {StyleSheet, NavigatorIOS} from 'react-native';
+import PoemSearch from './src/components/PoemSearch';
 
 type Props = {};
-
-class PoemSearch extends Component<{}> {
-  render() {
-    return <Text style={styles.containerSearch}>Find Poems</Text>;
-  }
-}
 
 export default class App extends Component<{}> {
   render() {
