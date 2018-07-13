@@ -26,12 +26,6 @@ export default class App extends Component<{}> {
 }
 
 const styles = StyleSheet.create({
-  containerSearch: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565',
-    marginTop: 65,
-  },
   container: {
     flex: 1,
   },
