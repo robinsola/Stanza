@@ -2,12 +2,32 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator, Image, } from 'react-native';
 
+//function to call api from house listing tutorial:
+function urlForQueryAndPage(key, value, pageNumber) {
+  const data = {
+      country: 'uk',
+      pretty: '1',
+      encoding: 'json',
+      listing_type: 'buy',
+      action: 'search_listings',
+      page: pageNumber,
+  };
+  data[key] = value;
+
+  const querystring = Object.keys(data)
+    .map(key => key + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
+  return 'https://api.nestoria.co.uk/api?' + querystring;
+}
+
 export default class PoemSearch extends Component<{}> {
 
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'author name'
+      searchString: 'author name',
+      isLoading: false,
     };
   }
 
@@ -15,7 +35,18 @@ export default class PoemSearch extends Component<{}> {
     this.setState({ searchString: event.nativeEvent.text });
   };
 
+  _executeQuery = (query) => {
+    console.log(query);
+    this.setState({ isLoading: true });
+  };
+
+  _onSearchPressed = () => {
+    const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
+    this._executeQuery(query);
+  };
+
   render() {
+    const loader = this.state.isLoading ? <ActivityIndicator size='large'/> : null;
     return (
       <View style={styles.body}>
         <Text style={styles.text}>Pick the Occasion:</Text>
@@ -26,8 +57,9 @@ export default class PoemSearch extends Component<{}> {
             style={styles.searchInput}
             placeholder='Search by Author'
             onChange={this._onSearchInput}/>
-          <Button onPress={() => {}} color='#F5A623' title='Find Poems'/>
+          <Button onPress={this._onSearchPressed} color='#F5A623' title='Find Poems'/>
         </View>
+        {loader}
       </View>
     );
   }
