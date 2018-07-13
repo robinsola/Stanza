@@ -28,7 +28,7 @@ export default class PoemSearch extends Component<{}> {
     this.state = {
       searchString: 'author name',
       isLoading: false,
-      message: '',
+      errorMessage: '',
     };
   }
 
@@ -50,8 +50,17 @@ export default class PoemSearch extends Component<{}> {
       .catch(error =>
         this.setState({
           isLoading: false,
-          message: 'Yikes! Something is not working ' + error
+          errorMessage: 'Yikes! Something is not working ' + error
         }));
+  };
+
+  _handleResponse = (response) => {
+    this.setState({ isLoading: false , errorMessage: '' });
+    if (response.application_response_code.substr(0, 1) === '1') {
+      console.log('search results: ' + response.listings.length);
+    } else {
+      this.setState({ errorMessage: 'Nothing found. Please try again.' });
+    }
   };
 
   render() {
