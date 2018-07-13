@@ -1,6 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator, Image, } from 'react-native';
+import PoemList.js from './PoemList';
 
 //function to call api from house listing tutorial:
 function urlForQueryAndPage(key, value, pageNumber) {
