@@ -26,6 +26,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
 export default class PoemSearch extends Component<{}> {
   constructor(props) {
     super(props);
+    //state data for tutorial api call
     this.state = {
       searchString: 'london',
       isLoading: false,
