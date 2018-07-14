@@ -7,7 +7,6 @@ export default class App extends Component<{}> {
   render() {
     return (
         <Logo />
-
         // <NavigatorIOS
         //   style={styles.container}
         //   initialRoute={{
@@ -17,12 +16,3 @@ export default class App extends Component<{}> {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: '#3a3a3a',
-//   },
-// });
