@@ -1,32 +1,28 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 'use strict';
 import React, {Component} from 'react';
-import {StyleSheet, NavigatorIOS} from 'react-native';
-import PoemSearch from './PoemSearch';
-
-type Props = {};
+import { StyleSheet, NavigatorIOS } from 'react-native';
+import Logo from './Logo';
 
 export default class App extends Component<{}> {
   render() {
     return (
-      <NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'Stanza',
-          component: PoemSearch,
-        }}/>
+        <Logo />
+
+        // <NavigatorIOS
+        //   style={styles.container}
+        //   initialRoute={{
+        //     title: 'Stanza',
+        //     component: Logo,
+        //   }}/>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     backgroundColor: '#3a3a3a',
+//   },
+// });
